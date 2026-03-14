@@ -1,0 +1,4 @@
+@extends('layouts.app')
+@section('content')
+<h1>Товары</h1><p><a class="btn" href="{{ route('admin.products.create') }}">Добавить товар</a></p><table><tr><th>ID</th><th>Название</th><th>Категория</th><th>Цена</th><th>Остаток</th><th>Активен</th><th></th></tr>@foreach($products as $product)<tr><td>{{ $product->id }}</td><td>{{ $product->name }}</td><td>{{ $product->category->name }}</td><td>{{ $product->price }} ₽</td><td>{{ $product->stock }}</td><td>{{ $product->is_active ? 'Да' : 'Нет' }}</td><td><a class="btn secondary" href="{{ route('admin.products.edit', $product) }}">Изменить</a> <form method="POST" action="{{ route('admin.products.destroy', $product) }}" style="display:inline">@csrf @method('DELETE')<button class="btn danger">Удалить</button></form></td></tr>@endforeach</table><div style="margin-top:20px">{{ $products->links() }}</div>
+@endsection

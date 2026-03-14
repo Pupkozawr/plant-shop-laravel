@@ -1,0 +1,4 @@
+@extends('layouts.app')
+@section('content')
+<div class="card" style="max-width:800px"><h1>Новый товар</h1><form method="POST" action="{{ route('admin.products.store') }}">@csrf<label>Название<input type="text" name="name" value="{{ old('name') }}"></label><label>Описание<textarea name="description">{{ old('description') }}</textarea></label><label>Цена<input type="number" step="0.01" name="price" value="{{ old('price') }}"></label><label>Категория<select name="category_id">@foreach($categories as $category)<option value="{{ $category->id }}">{{ $category->name }}</option>@endforeach</select></label><label>Ссылка на изображение<input type="url" name="image_url" value="{{ old('image_url') }}"></label><label>Остаток<input type="number" name="stock" value="{{ old('stock', 0) }}"></label><label><input type="checkbox" name="is_active" value="1" checked> Активный товар</label><button class="btn">Сохранить</button></form></div>
+@endsection
